@@ -4,6 +4,10 @@
 
 developing...
 
+[github preview](https://htmlpreview.github.io/?https://github.com/choizhang/drag/blob/master/dist/index.html)
+
+
+
 <!--bower install-->
 
 <!--npm install-->
