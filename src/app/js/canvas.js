@@ -8,6 +8,7 @@ import { input } from './components/input/input';
 import { Settings } from './settings/settings';
 import * as tpl from './tpl/tpl';
 import { Components } from './components/components';
+import { sortNumber } from './sortNumber';
 
 
 export class Canvas {
@@ -146,12 +147,13 @@ export class Canvas {
                     update: function (event, ui) {
                         console.log(ui)
 
-                        that.settings.sortNumber();
+                        sortNumber.sort();
 
                     },
                     deactivate: function( event, ui ) {
+                        console.log(that.components.isGeneratorNumber)
                         //排序停止的时候进行再次排序
-                        that.settings.sortNumber();
+                        sortNumber.sort();
                     }
                 }
             );
