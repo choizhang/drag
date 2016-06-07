@@ -3,15 +3,16 @@
  */
 
 
-import { Input } from './input';
-import { Select } from './select';
+//import { Input } from './input';
+//import { Select } from './select';
+import { sortNumber } from '../sortNumber';
 
 
 export class Settings {
     constructor(settings = {}) {
         this.settings = settings;
 
-        this.isGeneratorNumber = false;
+
         this.$containner = $(this.settings.containner);
         this.$settringArea = this.$containner.find('.setting-area');
 
@@ -100,24 +101,10 @@ export class Settings {
         let $generatorNumber = $('#generatorNumber');
         $generatorNumber.on('click', function () {
 
-            that.isGeneratorNumber = $generatorNumber.prop('checked');
+            sortNumber.isGeneratorNumber = $generatorNumber.prop('checked');
 
-            that.sortNumber();
+            sortNumber.sort();
         })
-    }
-
-    sortNumber() {
-        let $autoNum = $('.form-autoNum');
-        if(this.isGeneratorNumber){
-            let $rank = $('[data="rank"]');
-            $rank.each(function (index, val) {
-                $(val).find('.number').html(`${index + 1}.`);
-            })
-            $autoNum.show();
-        } else {
-            $autoNum.hide();
-        }
-
     }
 
 }

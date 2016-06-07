@@ -18,10 +18,6 @@ gulp.task('partials', function () {
             spare: true,
             quotes: true
         }))
-        .pipe($.angularTemplatecache('templateCacheHtml.js', {
-            module: 'medBack',
-            root: 'app'
-        }))
         .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
 });
 
@@ -104,5 +100,4 @@ gulp.task('tests', ['clean', 'testConfig'], function () {
 
 gulp.task('build', ['html', 'fonts', 'other'], function () {
     //将配置改回dev的配置
-    gulp.start('devConfig');
 });

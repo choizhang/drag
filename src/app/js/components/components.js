@@ -4,6 +4,7 @@
 import { dividingHtml } from './dividing/dividing';
 import { column } from './column/column';
 import { input } from './input/input';
+import { sortNumber } from '../sortNumber';
 
 export class Components {
     constructor(settings = {}) {
@@ -59,6 +60,8 @@ export class Components {
         this.twoRow($component.find('.column-item'));
 
         this.injectJs(injectJs);
+
+        sortNumber.sort();
 
         return $component;
     }
@@ -124,7 +127,7 @@ export class Components {
 
                     console.log($component)
 
-                    //that.settings.sortNumber();
+                    sortNumber.sort();
 
                 }
             })
@@ -133,7 +136,7 @@ export class Components {
                 placeholder: "portlet-placeholder ui-corner-all",
                 deactivate: function( event, ui ) {
                     //排序停止的时候进行再次排序
-                    //that.settings.sortNumber();
+                    sortNumber.sort();
                 }
             });
     }
