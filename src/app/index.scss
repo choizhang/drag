@@ -1,0 +1,255 @@
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+
+// endinjector
+
+ul {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-padding-start: 0;
+}
+
+.header {
+    height: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px #000000 solid;
+    line-height: 50px;
+}
+
+.main {
+    display: flex;
+}
+
+.edit-left {
+    width: 200px;
+}
+
+.edit-center {
+    flex: 1;
+
+    .design-btns {
+        button {
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+    }
+}
+
+.edit-right {
+    width: 300px;
+    border: 1px #000000 solid;
+}
+
+.design-ui {
+    position: relative;
+    height: 1038px;
+    margin: 0 20px 0 150px;
+    background: #FFF;
+    box-shadow: 0 0 6px #a9a9a9;
+    margin-bottom: 40px;
+    border: 1px #000000 solid;
+    transition: 0.2s;
+    //这个对拖动的位置有影响
+    //transform: scale(0.7);
+    transform-origin: 50% 0;
+
+    .line960 {
+        border: 1px solid #F00;
+        border-right: none;
+        position: absolute;
+        z-index: 9999;
+
+        span {
+            display: block;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+            padding: 5px;
+            background: #fff;
+            left: -70px;
+            width: 60px;
+        }
+    }
+
+    .line-iphone4 {
+        height: 832px;
+        top: 0;
+        width: 20px;
+        left: -20px;
+        border-color: #ff8111;
+
+        span {
+            top: 40%;
+            background: #ff8111;
+        }
+    }
+
+    .line-iphone5 {
+        height: 1008px;
+        top: 0;
+        width: 40px;
+        left: -40px;
+        border-color: #11a952;
+
+        span {
+            background: #11a952;
+        }
+    }
+
+    .line-iphone6 {
+        height: 1038px;
+        top: 0;
+        width: 60px;
+        left: -60px;
+        border-color: #c3111d;
+
+        span {
+            top: 60%;
+            background: #c3111d;
+        }
+    }
+}
+
+.sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    li {
+        overflow: hidden;
+        position: relative;
+        padding: 30px 10px;
+
+        .del {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            font-size: 26px;
+        }
+
+        &:hover {
+            border: 1px #000d00 dashed;
+
+            .del {
+                display: block;
+            }
+        }
+
+        &.active {
+            border: 1px #ff0d00 solid;
+        }
+    }
+
+    input[type="text"] {
+        width: 100%;
+        height: 50px;
+        border: 1px solid #ccc;
+    }
+
+    .form-autoNum {
+        display: none;
+    }
+
+    .form-required {
+        display: none;
+        color: red;
+        position: relative;
+        top: 2px;
+    }
+}
+
+.slider-range-min {
+    display: none;
+}
+
+//分割线的样式
+.dividing {
+    height: 34px;
+    padding-top: 20px;
+    text-align: center;
+
+    span {
+        position: relative;
+        top: -19px;
+        //这个值要跟背景色一样
+        background-color: #fff;
+        padding: 0 5px;
+    }
+}
+
+//drag's css
+//body.dragging, body.dragging * {
+//    cursor: move !important;
+//}
+//
+//.dragged {
+//    position: absolute;
+//    opacity: 0.5;
+//    z-index: 2000;
+//}
+//
+//.ui-container li.placeholder {
+//    position: relative;
+//    /** More li styles **/
+//}
+//.ui-container li.placeholder:before {
+//    position: absolute;
+//    /** Define arrowhead **/
+//}
+
+//.sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+//.sortable li span { position: absolute; margin-left: -1.3em; }
+
+//提高可拖动的层级
+.ui-draggable-handle {
+    z-index: 1;
+}
+
+.column {
+    overflow: hidden;
+    display: flex;
+    .column-item {
+        min-height: 70px;
+
+        &:nth-child(1) {
+            width: 250px;
+        }
+        &:nth-child(2) {
+            flex: 1;
+        }
+    }
+}
+
+.portlet-placeholder {
+    border: 1px dotted black;
+    margin: 0 1em 1em 0;
+    height: 50px;
+}
+
+.block-placeholder {
+    height: 98px !important;
+    border: 1px dotted black;
+    margin-bottom: 10px;
+    width: 498px;
+}
+
+.text-input {
+    display: flex;
+
+    label {
+        width: 65px;
+        line-height: 50px;
+    }
+    input {
+        flex: 1;
+    }
+}
+

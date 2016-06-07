@@ -1,0 +1,29 @@
+.setting-area {
+    font-size: 16px;
+    line-height: 30px;
+
+    .setting-component {
+        margin-top: 10px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+
+    .checkbox-wrapper{
+        display: flex;
+
+        label{
+            flex: 1;
+        }
+    }
+
+}
+
+.btn-component {
+    margin-top: 20px;
+
+    button {
+        margin-right: 20px;
+    }
+}
