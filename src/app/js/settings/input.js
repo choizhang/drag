@@ -2,30 +2,19 @@
  * Created by choizhang on 16/6/1.
  */
 
-export class Input {
-    //{
-    //    label: 'aa',
-    //    changeFunc: function() {}
-    //}
-    constructor(settings = {}) {
-        this.settings = settings;
+export function input(data) {
+    let $tplInput = $(`
+        <div class="setting-component">
+            <div>${data.label}</div>
+            <input type="text" class="title" value="${data.text}">
+        </div>
+    `);
 
-        this.init();
-    }
+    $tplInput.find('input')
+        .on('keyup', function() {
+            let newValue = $(this).val();
+            data.setDom(newValue);
+        });
 
-    init() {
-        var that = this;
-        this.$dom = $(`
-            <div>
-                <label>${this.settings.label}</label>
-                <input type="text">
-            </div>
-        `);
-        this.$dom.find('input')
-            .on('change', function() {
-                let newValue = $(this).val();
-                that.settings.changeFunc(newValue);
-            });
-    }
-
+    return $tplInput;
 }

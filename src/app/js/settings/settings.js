@@ -2,10 +2,7 @@
  * Created by choizhang on 16/6/1.
  */
 
-
-//import { Input } from './input';
-//import { Select } from './select';
-import { sortNumber } from '../sortNumber';
+import * as common from '../common/common';
 
 
 export class Settings {
@@ -32,24 +29,10 @@ export class Settings {
         this.componentSave();
         this.componentReset();
         this.generatorNumber();
-    }
-
-    clearWidget() {
-        this.$settringArea.html('');
-    }
-
-    initWidget(html) {
-        this.$settringArea.append(html);
+        this.showGrid();
     }
 
     globalSave() {
-        //$('#btn-global-save').on('click', function () {
-        //    //背景颜色
-        //    var bgColor = $('#bgColor').val();
-        //    console.log(bgColor)
-        //    $('.design-ui').css('backgroundColor', bgColor);
-        //
-        //})
 
         $('#bgColor').on('change', function() {
             let bgColor = $(this).val();
@@ -97,15 +80,31 @@ export class Settings {
     }
 
     generatorNumber() {
-        let that = this;
         let $generatorNumber = $('#generatorNumber');
         $generatorNumber.on('click', function () {
 
-            sortNumber.isGeneratorNumber = $generatorNumber.prop('checked');
+            common.sortNumber.isGeneratorNumber = $generatorNumber.prop('checked');
 
-            sortNumber.sort();
+            common.sortNumber.sort();
         })
     }
 
-}
-;
+    showGrid() {
+        let $showGrid = $('#showGrid');
+        $showGrid.on('click', function () {
+
+            let $components = $('.ui-state-default');
+
+            let showGrid = $showGrid.prop('checked');
+
+            if(showGrid){
+                //取消边框
+                $components.css('border', 'none');
+            } else {
+                //显示边框
+                $components.css('border', '1px solid #d3d3d3');
+            }
+        })
+    }
+
+};

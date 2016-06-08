@@ -2,13 +2,9 @@
  * Created by choizhang on 16/6/1.
  */
 
-import { dividingHtml } from './components/dividing/dividing';
-import { column } from './components/column/column';
-import { input } from './components/input/input';
-import { Settings } from './settings/settings';
-import * as tpl from './tpl/tpl';
-import { Components } from './components/components';
-import { sortNumber } from './sortNumber';
+import { Settings } from '../settings/settings';
+import { Components } from '../components/components';
+import * as common from '../common/common';
 
 
 export class Canvas {
@@ -79,7 +75,7 @@ export class Canvas {
 
                     //根据数据初始化组件的设置
                     let setting = $this.data('setting');
-                    that.initSetting(setting);
+                    common.initSettings.init(setting);
 
                     //把组件设置激活并高亮
                     that.settings.$tabs.tabs("enable", 1);
@@ -100,40 +96,6 @@ export class Canvas {
     drop() {
         let that = this;
         this.$canvas
-            //.droppable({
-            //    //activeClass: "ui-state-default",
-            //    hoverClass: "ui-state-hover",
-            //    accept: ":not(.ui-sortable-helper)",
-            //    drop: function (event, ui) {
-            //
-            //        console.log('rrrr')
-            //
-            //
-            //        switch (ui.draggable.data('component')) {
-            //            //如果拖动过来的组件是分割线
-            //            case 'dividing':
-            //                var {$html, setting, save, reset, injectJs} = dividingHtml();
-            //                break;
-            //            case 'column':
-            //                var {$html, setting, save, reset, injectJs} = column();
-            //                break;
-            //            case 'input':
-            //                var {$html, setting, save, reset, injectJs} = input();
-            //                break;
-            //        }
-            //        // 给加入的组件包裹公共html
-            //        let $component = that.componentWrapper($html, save, reset);
-            //
-            //        that.twoRow($component.find('.column-item'));
-            //
-            //        $component.appendTo(this).data('setting', setting);
-            //
-            //        that.injectJs(injectJs);
-            //
-            //
-            //        that.settings.sortNumber();
-            //    }
-            //})
             .sortable(
                 {
                     items: "li",
@@ -147,33 +109,17 @@ export class Canvas {
                     update: function (event, ui) {
                         console.log(ui)
 
-                        sortNumber.sort();
+                        common.sortNumber.sort();
 
                     },
                     deactivate: function( event, ui ) {
                         console.log(that.components.isGeneratorNumber)
                         //排序停止的时候进行再次排序
-                        sortNumber.sort();
+                        common.sortNumber.sort();
                     }
                 }
             );
     }
-
-    initSetting(setting = {}) {
-
-        //先将之前的组件清空
-        this.settings.clearWidget();
-
-        for (let key in setting) {
-            let dom = tpl[key](setting[key]);
-
-            //生成了一个组件就塞到设置面板里面,并且这个生成的组件是绑定了事件的
-            this.settings.initWidget(dom);
-
-        }
-    }
-
-
 
     /**
      * 预览功能

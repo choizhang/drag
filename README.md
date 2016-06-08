@@ -4,8 +4,7 @@
 
 developing...
 
-[github preview上有bug,还是需要直接下载dist目录查看](https://htmlpreview.github.io/?https://github.com/choizhang/drag/blob/master/dist/index.html){:target="_blank"}
-
+[github preview上有bug,还是需要直接下载dist目录查看](https://htmlpreview.github.io/?https://github.com/choizhang/drag/blob/master/dist/index.html
 
 [GitZip](http://kinolien.github.io/gitzip/)
 输入https://github.com/choizhang/drag/tree/master/dist进行下载

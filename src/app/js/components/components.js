@@ -1,10 +1,11 @@
 /**
  * Created by choizhang on 16/6/1.
  */
+import * as common from '../common/common';
 import { dividingHtml } from './dividing/dividing';
 import { column } from './column/column';
 import { input } from './input/input';
-import { sortNumber } from '../sortNumber';
+
 
 export class Components {
     constructor(settings = {}) {
@@ -61,7 +62,7 @@ export class Components {
 
         this.injectJs(injectJs);
 
-        sortNumber.sort();
+        common.sortNumber.sort();
 
         return $component;
     }
@@ -91,7 +92,7 @@ export class Components {
 
             let setting = $component.data('setting');
             reset(setting);
-            that.initSetting(setting);
+            common.initSettings.init(setting);
         });
 
         return $component;
@@ -125,9 +126,7 @@ export class Components {
                     let $component = that.componentWrapper($html, save, reset);
                     $component.appendTo(this).data('setting', setting);
 
-                    console.log($component)
-
-                    sortNumber.sort();
+                    common.sortNumber.sort();
 
                 }
             })
@@ -136,7 +135,7 @@ export class Components {
                 placeholder: "portlet-placeholder ui-corner-all",
                 deactivate: function( event, ui ) {
                     //排序停止的时候进行再次排序
-                    sortNumber.sort();
+                    common.sortNumber.sort();
                 }
             });
     }

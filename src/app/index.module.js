@@ -2,8 +2,7 @@
  * Created by choizhang on 16/6/1.
  */
 
-import * as tpl from './js/tpl/tpl';
-import { Canvas } from './js/canvas';
+import { Canvas } from './js/canvas/canvas';
 
 
 let canvas = new Canvas(

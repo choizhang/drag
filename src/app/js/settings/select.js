@@ -1,50 +1,28 @@
 /**
  * Created by choizhang on 16/6/1.
  */
+export function select(data) {
+    var tplSelect = `<div class="setting-component">
+                         <div>${data.label}</div>
+                         <select class="layout">`;
 
-export class Select {
-    //{
-    //    label: 'aa',
-    //    options: [
-    //         {
-    //          value: 1,
-    //          text: '居左'
-    //         },
-    //         {
-    //          value: 2,
-    //          text: '居中'
-    //         }
-    //    ]
-    //    changeFunc: function() {}
-    //}
-    constructor(settings = {}) {
-        this.settings = settings;
+    data.options.items.forEach(function (item) {
+        if (item.value === data.options.checkedValue) {
+            tplSelect += `<option value="${item.value}" selected>${item.text}</option>`;
+        } else {
+            tplSelect += `<option value="${item.value}">${item.text}</option>`;
+        }
 
-        this.init();
-    }
+    })
+    tplSelect += '</select></div>';
 
-    init() {
-        let that = this;
+    let $tplSelect = $(tplSelect);
 
-        let html = '';
-        this.settings.options.forEach((option) => {
-            html += `<option value="${option.value}">${option.text}</option>`;
+    $tplSelect.find('select')
+        .on('change', function() {
+            let newValue = $(this).val();
+            data.setDom( parseInt(newValue) );
         });
 
-        this.$dom = $(`
-            <div>
-                <label>${this.settings.label}</label>
-                <select id="layout">
-                    ${html}
-                </select>
-            </div>
-        `);
-
-        this.$dom.find('select')
-            .on('change', function() {
-                let newValue = $(this).val();
-                that.settings.changeFunc(newValue);
-            });
-    }
-
+    return $tplSelect;
 }
