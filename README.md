@@ -17,6 +17,13 @@ developing...
 3. gulp serve
 
 
+如果你感兴趣
+
+1. bower install
+2. npm install
+3. gulp serve
+
+
 <!--bower install-->
 
 <!--npm install-->
