@@ -10,18 +10,16 @@ developing...
 输入"https://github.com/choizhang/drag/tree/master/dist"进行下载
 
 
-如果你感兴趣
+如果你感兴趣,下面的代码即可进入开发模式
 
 1. bower install
 2. npm install
 3. gulp serve
 
+如果需要放入生产环境(编译到dist目录)
+gulp build
 
-如果你感兴趣
 
-1. bower install
-2. npm install
-3. gulp serve
 
 
 <!--bower install-->

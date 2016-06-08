@@ -4,41 +4,59 @@
 
 function defaultSetting(dom) {
     return {
-        'input': {
-            label: '姓名:',
-            text: '请输入姓名',
-            setDom: (setting) => {
-                let newValue;
-                if(typeof(setting) === 'object'){
-                    newValue = setting.input.text;
-                } else {
-                    newValue = setting;
+        'input': [
+            {
+                label: '标题:',
+                text: '姓名',
+                setDom: (setting) => {
+                    let newValue;
+                    if (typeof(setting) === 'object') {
+                        newValue = setting.input[0].text;
+                    } else {
+                        newValue = setting;
+                    }
+                    dom.find('.title').html(newValue);
+                },
+                setSetting: function () {
+                    this.text = dom.find('.title').html();
                 }
-                dom.find('input').val(newValue);
             },
-            setSetting: function() {
-                this.text = dom.find('input').val();
+            {
+                label: '默认值:',
+                text: '请输入姓名',
+                setDom: (setting) => {
+                    let newValue;
+                    if (typeof(setting) === 'object') {
+                        newValue = setting.input[1].text;
+                    } else {
+                        newValue = setting;
+                    }
+                    dom.find('input').val(newValue);
+                },
+                setSetting: function () {
+                    this.text = dom.find('input').val();
+                }
             }
-        },
+        ],
         'checkbox': {
             label: '校验:',
             text: '此项必填',
             isChecked: false,
             setDom: (setting) => {
                 let newValue;
-                if(typeof(setting) === 'object'){
+                if (typeof(setting) === 'object') {
                     newValue = setting.checkbox.isChecked;
                 } else {
                     newValue = setting;
                 }
-                if(newValue){
+                if (newValue) {
                     dom.find('.form-required').show();
                 } else {
                     dom.find('.form-required').hide();
                 }
 
             },
-            setSetting: function() {
+            setSetting: function () {
                 this.isChecked = dom.find('.form-required').is(":visible");
             }
         },
@@ -64,7 +82,7 @@ function defaultSetting(dom) {
             },
             setDom: (setting) => {
                 let newValue;
-                if(typeof(setting) === 'object'){
+                if (typeof(setting) === 'object') {
                     newValue = setting.radio.options.checkedValue;
                 } else {
                     newValue = setting;
@@ -72,20 +90,20 @@ function defaultSetting(dom) {
 
                 let classStr = dom.attr('class');
 
-                classStr = classStr.replace(/Type-\d/, 'Type-' + (newValue - 1) );
+                classStr = classStr.replace(/Type-\d/, 'Type-' + (newValue - 1));
 
                 dom.attr('class', classStr);
 
             },
-            setSetting: function() {
+            setSetting: function () {
                 let checkedValue;
                 let css = dom.attr('class');
 
-                if(/Type-0/.test(css)){
+                if (/Type-0/.test(css)) {
                     checkedValue = 1;
-                } else if(/Type-1/.test(css)){
+                } else if (/Type-1/.test(css)) {
                     checkedValue = 2;
-                } else if(/Type-2/.test(css)){
+                } else if (/Type-2/.test(css)) {
                     checkedValue = 3;
                 }
 
@@ -96,16 +114,16 @@ function defaultSetting(dom) {
 }
 
 
-export function input(setting=defaultSetting()) {
+export function input(setting = defaultSetting()) {
     let $html;
     $html = $(`
                     <div class="text-input sui-form-viewType-0" data="rank">
                         <label>
                             <span class="form-required">*</span>
                             <span class="form-autoNum">1. </span>
-                            ${setting.input.label}
+                            <span class="title">${setting.input[0].text}</span>
                         </label>
-                        <input type="text" value="${setting.input.text}" disabled>
+                        <input type="text" value="${setting.input[1].text}" disabled>
                     </div>
                 `);
     setting = defaultSetting($html);
@@ -114,8 +132,16 @@ export function input(setting=defaultSetting()) {
         $html: $html,
         setting: setting,
         save: () => {
-            for(let key in setting){
-                setting[key].setSetting();
+            for (let key in setting) {
+                let cps = setting[key];
+
+                if(Array.isArray(cps)){
+                    cps.forEach((value) => {
+                        value.setSetting();
+                    })
+                } else {
+                    cps.setSetting();
+                }
             }
 
             return setting;
@@ -123,8 +149,16 @@ export function input(setting=defaultSetting()) {
         },
         reset: (oldSetting) => {
 
-            for(let key in setting){
-                setting[key].setDom(oldSetting);
+            for (let key in setting) {
+                let cps = setting[key];
+
+                if(Array.isArray(cps)){
+                    cps.forEach((value) => {
+                        value.setDom(oldSetting);
+                    })
+                } else {
+                    cps.setDom(oldSetting);
+                }
             }
         },
         injectJs: () => {

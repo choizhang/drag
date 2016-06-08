@@ -92,18 +92,10 @@ export class Settings {
     showGrid() {
         let $showGrid = $('#showGrid');
         $showGrid.on('click', function () {
-
             let $components = $('.ui-state-default');
+            let status = $showGrid.prop('checked');
 
-            let showGrid = $showGrid.prop('checked');
-
-            if(showGrid){
-                //取消边框
-                $components.css('border', 'none');
-            } else {
-                //显示边框
-                $components.css('border', '1px solid #d3d3d3');
-            }
+            common.showGrid.action($components, status);
         })
     }
 

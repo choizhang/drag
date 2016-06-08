@@ -3,5 +3,6 @@
  */
 export { sortNumber } from './sortNumber';
 export { initSettings } from './initSettings';
+export { showGrid } from './showGrid';
 
 

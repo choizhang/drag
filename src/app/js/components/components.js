@@ -30,8 +30,10 @@ export class Components {
                     return that.buildComponent($(this).data('component'));
                 },
                 stop: function( event, ui ) {
-                    //插件又添加了样式,我这再次清空
+                    //拖拽完成后的回调事件
+                    //插件又添加了我不想要的样式,我这再次清空
                     ui.helper.removeAttr('style');
+                    common.showGrid.action(ui.helper);
                 },
                 connectToSortable: "#sortable, .column-item",
                 //revert: true,
@@ -62,7 +64,8 @@ export class Components {
 
         this.injectJs(injectJs);
 
-        common.sortNumber.sort();
+        //common.sortNumber.sort();
+        //common.showGrid.action();
 
         return $component;
     }
@@ -74,7 +77,6 @@ export class Components {
      * @returns {*|jQuery}
      */
     componentWrapper($html, save, reset) {
-        let that = this;
         let $component = $(`<li class="ui-state-default" data-pid="${this.componentId++} ">
                     <a class="del">&times;</a>
                 </li>`).append($html);
@@ -103,7 +105,6 @@ export class Components {
 
         let that = this;
 
-        console.log(els)
         els
             .droppable({
                 //activeClass: "ui-state-default",

@@ -9,14 +9,26 @@ class InitSettings {
         this.$settringArea = $('.setting-area');
     }
 
-    init(setting) {
-        this.init();
-        this.generator();
+    init(setting={}) {
+        this.clear();
+        this.generator(setting);
     }
 
     generator(setting) {
         for (let key in setting) {
-            let dom = tpl[key](setting[key]);
+
+            let dom;
+            let cps = setting[key];
+            if(Array.isArray(cps)){
+                cps.forEach((value) => {
+                    dom = tpl[key](value);
+
+                    this.$settringArea.append(dom);
+                })
+            } else {
+                dom = tpl[key](cps);
+            }
+
 
             //生成了一个组件就塞到设置面板里面,并且这个生成的组件是绑定了事件的
             this.$settringArea.append(dom);

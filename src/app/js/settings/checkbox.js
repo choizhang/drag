@@ -2,7 +2,6 @@
  * Created by choizhang on 16/6/1.
  */
 export function checkbox(data) {
-    console.log(data.isChecked)
     var tplCheckbox = `<div class="setting-component">
                          <div>${data.label}</div>
                          <label><input type="checkbox" ${data.isChecked ? 'checked' : ''}>${data.text}</label>

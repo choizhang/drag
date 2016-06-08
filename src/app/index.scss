@@ -53,7 +53,7 @@ ul {
     background: #FFF;
     box-shadow: 0 0 6px #a9a9a9;
     margin-bottom: 40px;
-    border: 1px #000000 solid;
+    box-shadow: 0 0 20px #c1c1c1;
     transition: 0.2s;
     //这个对拖动的位置有影响
     //transform: scale(0.7);
@@ -135,8 +135,12 @@ ul {
             font-size: 26px;
         }
 
+        &.no-border {
+            outline: none;
+        }
+
         &:hover {
-            border: 1px #000d00 dashed;
+            outline: 1px #000d00 dashed;
 
             .del {
                 display: block;
@@ -144,7 +148,7 @@ ul {
         }
 
         &.active {
-            border: 1px #ff0d00 solid;
+            outline: 1px #ff0d00 solid;
         }
     }
 

@@ -62,7 +62,6 @@ export class Canvas {
                     that.settings.$tabs.tabs("option", "active", 0);
 
                 } else {
-                    console.log('dd')
                     //将上一个的修改自动保存
                     $('#btn-component-save').trigger('click');
                     //其中一个组件已经被选中
@@ -94,7 +93,6 @@ export class Canvas {
     }
 
     drop() {
-        let that = this;
         this.$canvas
             .sortable(
                 {
@@ -107,13 +105,11 @@ export class Canvas {
                     },
                     //placeholder: 'block-placeholder',
                     update: function (event, ui) {
-                        console.log(ui)
 
                         common.sortNumber.sort();
 
                     },
                     deactivate: function( event, ui ) {
-                        console.log(that.components.isGeneratorNumber)
                         //排序停止的时候进行再次排序
                         common.sortNumber.sort();
                     }
