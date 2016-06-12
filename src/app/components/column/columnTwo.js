@@ -30,7 +30,7 @@ export function columnTwo(setting=defaultSetting()) {
     let $html;
     $html = $(`
                     <div class="column">
-                        <ul class="column-item ddd">
+                        <ul class="column-item">
                         </ul>
 
                         <ul class="column-item">

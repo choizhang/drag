@@ -80,7 +80,8 @@ function defaultSetting(dom) {
 }
 
 
-export function dividingHtml(setting=defaultSetting()) {
+
+export function dividing(setting=defaultSetting()) {
 
     //目前根本没有传参数的情况
     //let $html;

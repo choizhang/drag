@@ -2,10 +2,7 @@
  * Created by choizhang on 16/6/1.
  */
 import * as common from '../common/common';
-import { dividingHtml } from './dividing/dividing';
-import { columnOne } from './column/columnOne';
-import { columnTwo } from './column/columnTwo';
-import { input } from './input/input';
+import * as tpl from './tpl';
 
 
 export class Components {
@@ -45,31 +42,12 @@ export class Components {
     }
 
     buildComponent(type) {
-        switch (type) {
-            //如果拖动过来的组件是分割线
-            case 'dividing':
-                var {$html, setting, save, reset, injectJs} = dividingHtml();
-                break;
-            case 'columnOne':
-                var {$html, setting, save, reset, injectJs} = columnOne();
-                break;
-            case 'columnTwo':
-                var {$html, setting, save, reset, injectJs} = columnTwo();
-                break;
-            case 'input':
-                var {$html, setting, save, reset, injectJs} = input();
-                break;
-        }
+
         // 给加入的组件包裹公共html
-        let $component = this.componentWrapper($html, save, reset).data('setting', setting);
+        let $component = this.factory(type);
 
-        //如果是2列布局,就要给每一列增加拖动事件
+        //如果是从表布局,就要给每一列增加拖动事件
         this.twoRow($component.find('.column-item'));
-
-        this.injectJs(injectJs);
-
-        //common.sortNumber.sort();
-        //common.showGrid.action();
 
         return $component;
     }
@@ -104,6 +82,17 @@ export class Components {
         return $component;
     }
 
+    factory(type) {
+        let {$html, setting, save, reset, injectJs} = tpl[type]();
+
+        // 给加入的组件包裹公共html
+        let $component = this.componentWrapper($html, save, reset).data('setting', setting);
+
+        this.injectJs(injectJs);
+
+        return $component;
+    }
+
     twoRow(els) {
         if(!els) return;
 
@@ -116,22 +105,14 @@ export class Components {
                 accept: ":not(.ui-sortable-helper)",
                 greedy: true,
                 drop: function (event, ui) {
-                    switch (ui.draggable.data('component')) {
-                        //如果拖动过来的组件是分割线
-                        case 'dividing':
-                            var {$html, setting, save, reset, injectJs} = dividingHtml();
-                            break;
-                        case 'input':
-                            var {$html, setting, save, reset, injectJs} = input();
-                            break;
 
-                    }
+                    let type = ui.draggable.data('component');
 
-                    // 给加入的组件包裹公共html
-                    let $component = that.componentWrapper($html, save, reset);
-                    $component.appendTo(this).data('setting', setting);
+                    let $component = that.factory(type);
 
-                    common.sortNumber.sort();
+                    $component.appendTo(this);
+
+                    //common.sortNumber.sort();
 
                 }
             })
