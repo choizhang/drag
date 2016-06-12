@@ -52,6 +52,7 @@ export class Components {
                 break;
             case 'columnOne':
                 var {$html, setting, save, reset, injectJs} = columnOne();
+                break;
             case 'columnTwo':
                 var {$html, setting, save, reset, injectJs} = columnTwo();
                 break;

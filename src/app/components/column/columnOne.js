@@ -13,7 +13,7 @@ export function columnOne(setting=defaultSetting()) {
     let $html;
     $html = $(`
                     <div class="column">
-                        <ul class="column-item" style="display: none;">
+                        <ul class="column-item column-item-one">
                         </ul>
 
                         <ul class="column-item">
