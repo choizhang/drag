@@ -46,7 +46,21 @@
     <div id="editCenter" class="edit-center">
         <div class="design-ui">
             <ul id="sortable" class="sortable">
-
+                <li>
+                    <div class="sui-form-ctrl sui-form-viewType-0 sui-form-title-font-size-12">
+                        <div desc="这个是描述" scope="[object Object]">
+                            <div class="sui-form-ctrl-inner"><label class="sui-form-ctrl-title"><span
+                                    class="sui-form-required">*&nbsp;</span>姓名</label>
+                                <div class="sui-form-ctrl-desc">这个是描述</div>
+                                <div class="sui-form-ctrl-field sui-auth-edit"><input class="sui-form-ctrl-value"
+                                                                                      fieldname="field0001"
+                                                                                      inputtype="text" required="true"
+                                                                                      validate="true" type="text"
+                                                                                      value="杨超"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
             </ul>
 
             <div class="line960 line-iphone6"><span>iPhone6可视区</span></div>
@@ -67,51 +81,33 @@
 
             <div id="tabs-1">
                 <!--全局设置-->
-                <div>
-                    <label>背景颜色: <input type="color" id="bgColor" class="color" list="layerBackgroundColor_list"/></label>
-                    <datalist id="layerBackgroundColor_list">
-                        <option>#FFFFFF</option>
-                        <option>#000000</option>
-                        <option>#ffe600</option>
-                        <option>#bff800</option>
-                        <option>#7ff201</option>
-                        <option>#40f200</option>
-                        <option>#18f218</option>
-                        <option>#03ce65</option>
-                        <option>#00a3a2</option>
-                        <option>#0469df</option>
-                        <option>#2540ff</option>
-                        <option>#4d25ff</option>
-                        <option>#7a14f3</option>
-                        <option>#be0dbf</option>
-                        <option>#f10d58</option>
-                        <option>#ff330e</option>
-                        <option>#ff6b01</option>
-                        <option>#ffb202</option>
-                        <option>#00c0ff</option>
-                        <option>#1ba1cd</option>
-                    </datalist>
+                <datalist id="layerBackgroundColor_list">
+                    <option>#FFFFFF</option>
+                    <option>#000000</option>
+                    <option>#ffe600</option>
+                    <option>#bff800</option>
+                    <option>#7ff201</option>
+                    <option>#40f200</option>
+                    <option>#18f218</option>
+                    <option>#03ce65</option>
+                    <option>#00a3a2</option>
+                    <option>#0469df</option>
+                    <option>#2540ff</option>
+                    <option>#4d25ff</option>
+                    <option>#7a14f3</option>
+                    <option>#be0dbf</option>
+                    <option>#f10d58</option>
+                    <option>#ff330e</option>
+                    <option>#ff6b01</option>
+                    <option>#ffb202</option>
+                    <option>#00c0ff</option>
+                    <option>#1ba1cd</option>
+                </datalist>
+
+                <div id="global-setting-area">
+
                 </div>
 
-                <div>
-                    <label for="setLeftRight">左右间距</label>
-                    <input type="range" id="setLeftRight" min="0" max="30" value="10">
-                    <br>
-                    <label for="setTopBottom">垂直间距</label>
-                    <input type="range" id="setTopBottom" min="0" max="30" value="30">
-                </div>
-
-                <div>
-                    <label><input type="checkbox" id="generatorNumber">自动生成字段编号</label>
-                </div>
-
-                <div>
-                    <label><input type="checkbox" id="showGrid">取消组件边框</label>
-                </div>
-
-                <div class="btn-component">
-                    <button id="btn-global-save">保存</button>
-                </div>
             </div>
 
             <div id="tabs-2">
@@ -126,16 +122,6 @@
                 <!--</div>-->
 
                 <div class="setting-area">
-                    <!--<div>分割线</div>-->
-                    <!--<div>水平位置</div>-->
-                    <!--<select class="layout">-->
-                    <!--<option value="1">居左</option>-->
-                    <!--<option value="2" selected>居中</option>-->
-                    <!--<option value="3">居右</option>-->
-                    <!--</select>-->
-
-                    <!--<div>标题</div>-->
-                    <!--<input type="text" class="title">-->
                 </div>
 
                 <div class="btn-component">

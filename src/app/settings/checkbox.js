@@ -3,7 +3,7 @@
  */
 export function checkbox(data) {
     var tplCheckbox = `<div class="setting-component">
-                         <div>${data.label}</div>
+                         <div>${data.label||''}</div>
                          <label><input type="checkbox" ${data.isChecked ? 'checked' : ''}>${data.text}</label>
                     `;
 

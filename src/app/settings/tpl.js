@@ -6,7 +6,4 @@ export { input } from './input';
 export { radio } from './radio';
 export { checkbox } from './checkbox';
 export { range } from './range';
-
-
-
-//export { select, input };
+export { color } from './color';

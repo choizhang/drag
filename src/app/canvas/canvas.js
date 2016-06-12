@@ -15,7 +15,6 @@ export class Canvas {
         this.$canvas = $('#sortable');
         this.$pagePreview = $('#pagePreview');
 
-
         this.init();
     }
 

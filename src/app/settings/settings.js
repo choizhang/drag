@@ -2,8 +2,6 @@
  * Created by choizhang on 16/6/1.
  */
 
-import * as common from '../common/common';
-
 
 export class Settings {
     constructor(settings = {}) {
@@ -25,51 +23,33 @@ export class Settings {
             disabled: [1]
         });
 
-        this.globalSave();
         this.componentSave();
         this.componentReset();
-        this.generatorNumber();
-        this.showGrid();
     }
 
-    globalSave() {
-
-        $('#bgColor').on('change', function() {
-            let bgColor = $(this).val();
-            $('.design-ui').css('backgroundColor', bgColor);
-        })
-
-        $('#setLeftRight').on('change mousemove', function() {
-            let paddingValue = $(this).val();
-            $('.sortable li').css('padding-left', `${paddingValue}px`);
-            $('.sortable li').css('padding-right', `${paddingValue}px`);
-        })
-
-        $('#setTopBottom').on('change mousemove', function() {
-            let paddingValue = $(this).val();
-            $('.sortable li').css('padding-top', `${paddingValue}px`);
-            $('.sortable li').css('padding-bottom', `${paddingValue}px`);
-        })
-    }
-
+    /**
+     * 组件保存设置.
+     * 会触发该组件的每一个配置都重新保存
+     */
     componentSave() {
         let that = this;
         $('#btn-component-save').on('click', function () {
 
-            var number = that.$pannelId.html();
+            //获取当前组件的id号
+            let number = that.$pannelId.html();
             let $dom = $('.ui-state-default[data-pid="' + number + '"]');
             var setting = $dom.data('setting');
 
             if (setting) {
-                //setting.select.checked = $('.layout').val();
-                //setting.input.text = $('.title').val();
-
                 $dom.trigger('save');
             }
 
         })
     }
 
+    /**
+     * 组件设置重置
+     */
     componentReset() {
         let that = this;
         $('#btn-component-reset').on('click', function () {
@@ -82,26 +62,6 @@ export class Settings {
                 $dom.trigger('reset');
             }
 
-        })
-    }
-
-    generatorNumber() {
-        let $generatorNumber = $('#generatorNumber');
-        $generatorNumber.on('click', function () {
-
-            common.sortNumber.isGeneratorNumber = $generatorNumber.prop('checked');
-
-            common.sortNumber.sort();
-        })
-    }
-
-    showGrid() {
-        let $showGrid = $('#showGrid');
-        $showGrid.on('click', function () {
-            let $components = $('.ui-state-default');
-            let status = $showGrid.prop('checked');
-
-            common.showGrid.action($components, status);
         })
     }
 
