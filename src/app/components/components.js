@@ -3,7 +3,8 @@
  */
 import * as common from '../common/common';
 import { dividingHtml } from './dividing/dividing';
-import { column } from './column/column';
+import { columnOne } from './column/columnOne';
+import { columnTwo } from './column/columnTwo';
 import { input } from './input/input';
 
 
@@ -49,8 +50,10 @@ export class Components {
             case 'dividing':
                 var {$html, setting, save, reset, injectJs} = dividingHtml();
                 break;
-            case 'column':
-                var {$html, setting, save, reset, injectJs} = column();
+            case 'columnOne':
+                var {$html, setting, save, reset, injectJs} = columnOne();
+            case 'columnTwo':
+                var {$html, setting, save, reset, injectJs} = columnTwo();
                 break;
             case 'input':
                 var {$html, setting, save, reset, injectJs} = input();

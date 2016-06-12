@@ -39,10 +39,16 @@ export class Settings {
             $('.design-ui').css('backgroundColor', bgColor);
         })
 
-        $('#setPadding').on('change mousemove', function() {
+        $('#setLeftRight').on('change mousemove', function() {
             let paddingValue = $(this).val();
-            console.log(paddingValue)
-            $('.sortable li').css('padding', `30px ${paddingValue}px`);
+            $('.sortable li').css('padding-left', `${paddingValue}px`);
+            $('.sortable li').css('padding-right', `${paddingValue}px`);
+        })
+
+        $('#setTopBottom').on('change mousemove', function() {
+            let paddingValue = $(this).val();
+            $('.sortable li').css('padding-top', `${paddingValue}px`);
+            $('.sortable li').css('padding-bottom', `${paddingValue}px`);
         })
     }
 

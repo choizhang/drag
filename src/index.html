@@ -31,8 +31,11 @@
                 <li data-component="dividing">
                     <div>分割线</div>
                 </li>
-                <li data-component="column">
-                    <div>2列布局</div>
+                <li data-component="columnOne">
+                    <div>单列从表布局</div>
+                </li>
+                <li data-component="columnTwo">
+                    <div>2列从表布局</div>
                 </li>
                 <li data-component="input">
                     <div>输入框</div>
@@ -91,13 +94,12 @@
                 </div>
 
                 <div>
-                    <label for="setPadding">左右间距</label>
-                    <input type="range" id="setPadding" min="0" max="30" value="10">
+                    <label for="setLeftRight">左右间距</label>
+                    <input type="range" id="setLeftRight" min="0" max="30" value="10">
+                    <br>
+                    <label for="setTopBottom">垂直间距</label>
+                    <input type="range" id="setTopBottom" min="0" max="30" value="30">
                 </div>
-                <!--<select id="layout">-->
-                    <!--<option value="1">居左</option>-->
-                    <!--<option value="2">居中</option>-->
-                <!--</select>-->
 
                 <div>
                     <label><input type="checkbox" id="generatorNumber">自动生成字段编号</label>

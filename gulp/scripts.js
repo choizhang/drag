@@ -16,7 +16,7 @@ function webpackWrapper(watch, test, callback) {
           //preLoaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'eslint-loader'}],
           loaders: [{ test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader']}]
         },
-        output: {filename: 'index.module.js'}
+        output: {filename: 'index.js'}
     };
 
     if (watch) {
@@ -40,7 +40,7 @@ function webpackWrapper(watch, test, callback) {
         }
     };
 
-    var sources = [path.join(conf.paths.src, '/app/index.module.js')];
+    var sources = [path.join(conf.paths.src, '/app/index.js')];
 
     return gulp.src(sources)
         .pipe(webpack(webpackOptions, null, webpackChangeHandler))

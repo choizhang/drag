@@ -1,0 +1,14 @@
+//分割线的样式
+.dividing {
+    height: 34px;
+    padding-top: 20px;
+    text-align: center;
+
+    span {
+        position: relative;
+        top: -19px;
+        //这个值要跟背景色一样
+        background-color: #fff;
+        padding: 0 5px;
+    }
+}

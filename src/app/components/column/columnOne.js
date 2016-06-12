@@ -4,33 +4,16 @@
 
 function defaultSetting(dom) {
     return {
-        'range': {
-            label: '左右比例',
-            value: '250',
-            max: 350,
-            min: 150,
-            setDom: (setting) => {
-                let newValue;
-                if(typeof(setting) === 'object'){
-                    newValue = setting.input.text;
-                } else {
-                    newValue = setting;
-                }
-                dom.find('.column-item').eq(0).css('width', newValue);
-            },
-            setSetting: function() {
-                this.text = dom.find('span').html();
-            }
-        }
+
     }
 }
 
 
-export function column(setting=defaultSetting()) {
+export function columnOne(setting=defaultSetting()) {
     let $html;
     $html = $(`
                     <div class="column">
-                        <ul class="column-item">
+                        <ul class="column-item" style="display: none;">
                         </ul>
 
                         <ul class="column-item">

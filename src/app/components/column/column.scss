@@ -1,0 +1,16 @@
+.column {
+    display: flex;
+    .column-item {
+        min-height: 70px;
+
+        &:nth-child(1) {
+            width: 250px;
+        }
+        &:nth-child(2) {
+            flex: 1;
+        }
+    }
+    .column-item-one {
+        min-height: 70px;
+    }
+}
