@@ -20,6 +20,10 @@ developing...
 gulp build
 
 
+组件类型
+text 文本  textarea 文本域  checkbox 复选 radio 单选 select 选人  date 日期  datetime 日期时间 flowdealoption 流程意见 lable 标签 handwrite 签章  barcode 二维码   linenumber 行序号  relationform 关联表单  relation 数据关联  project 关联项目  member 人员  multimember 多人 account 单位  multiaccount 多单位  department 部门   multidepartment  多部门   post 岗位  multipost 多岗位  level 职务  multilevel 多职务  attachment 附件  image 图片  document 文档  outwrite 外部写入   externalwrite-ahead 外部预写  exchangetask dee任务   querytask dee查询任务   mapmarked 地图标注  maplocate 位置定位   mapphoto 拍照定位  customcontrol 自定义控件
+
+
 
 
 <!--bower install-->

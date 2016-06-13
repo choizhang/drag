@@ -14,7 +14,7 @@ class InitSettings {
         this.$globalSetting = $('#global-setting-area');
 
 
-        let setting = {
+        const globalSetting = {
             'color': {
                 label: '背景颜色',
                 value: '#fff',
@@ -65,7 +65,7 @@ class InitSettings {
                 }
             ]
         }
-        this.initGlobal(setting);
+        this.initGlobal(globalSetting);
     }
 
     init(setting={}) {

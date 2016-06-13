@@ -2,12 +2,12 @@
  * Created by choizhang on 16/6/1.
  */
 
-function defaultSetting(dom) {
+function defaultSetting(obj) {
     return {
         'input': [
             {
                 label: '标题:',
-                text: '姓名',
+                text: obj.data && obj.data.label || '姓名',
                 setDom: (setting) => {
                     let newValue;
                     if (typeof(setting) === 'object') {
@@ -15,15 +15,15 @@ function defaultSetting(dom) {
                     } else {
                         newValue = setting;
                     }
-                    dom.find('.title').html(newValue);
+                    obj.dom.find('.title').html(newValue);
                 },
                 setSetting: function () {
-                    this.text = dom.find('.title').html();
+                    this.text = obj.dom.find('.title').html();
                 }
             },
             {
                 label: '默认值:',
-                text: '请输入姓名',
+                text: obj.data && obj.data.value || '请输入姓名',
                 setDom: (setting) => {
                     let newValue;
                     if (typeof(setting) === 'object') {
@@ -31,17 +31,17 @@ function defaultSetting(dom) {
                     } else {
                         newValue = setting;
                     }
-                    dom.find('input').val(newValue);
+                    obj.dom.find('input').val(newValue);
                 },
                 setSetting: function () {
-                    this.text = dom.find('input').val();
+                    this.text = obj.dom.find('input').val();
                 }
             }
         ],
         'checkbox': {
             label: '校验:',
             text: '此项必填',
-            isChecked: false,
+            isChecked: obj.data && obj.data.require || false,
             setDom: (setting) => {
                 let newValue;
                 if (typeof(setting) === 'object') {
@@ -50,14 +50,26 @@ function defaultSetting(dom) {
                     newValue = setting;
                 }
                 if (newValue) {
-                    dom.find('.form-required').show();
+                    obj.dom.find('.form-required').css({'visibility': 'visible'});
                 } else {
-                    dom.find('.form-required').hide();
+                    obj.dom.find('.form-required').css({'visibility': 'hidden'});
                 }
 
             },
             setSetting: function () {
-                this.isChecked = dom.find('.form-required').is(":visible");
+                this.isChecked = obj.dom.find('.form-required').is(":visible");
+            }
+        },
+        'color': {
+            label: '标题颜色',
+            value: '#000',
+            setDom: (newValue) => {
+                obj.dom.find('.title').css('color', newValue);
+                let tdom = obj.dom.next();
+                tdom.attr('seetitlestyle', `color: ${newValue}`);
+            },
+            setSetting: function () {
+                this.value = obj.dom.find('.title').css('color');
             }
         },
         'radio': {
@@ -88,16 +100,25 @@ function defaultSetting(dom) {
                     newValue = setting;
                 }
 
-                let classStr = dom.attr('class');
+                let classStr = obj.dom.attr('class');
 
                 classStr = classStr.replace(/Type-\d/, 'Type-' + (newValue - 1));
 
-                dom.attr('class', classStr);
+                obj.dom.attr('class', classStr);
+
+                //将旁边的原始模板也做同样的修改
+                let tdom = obj.dom.next()
+
+                classStr = tdom.attr('class');
+
+                classStr = classStr.replace(/Type-\d/, 'Type-' + (newValue - 1));
+
+                tdom.attr('class', classStr);
 
             },
             setSetting: function () {
                 let checkedValue;
-                let css = dom.attr('class');
+                let css = obj.dom.attr('class');
 
                 if (/Type-0/.test(css)) {
                     checkedValue = 1;
@@ -114,19 +135,28 @@ function defaultSetting(dom) {
 }
 
 
-export function input(setting = defaultSetting()) {
-    let $html;
+export function input(data) {
+
+    let setting = defaultSetting({data: data})
+    let $html, require;
+
+    //对是否必填进行初始化操作
+    if (!setting.checkbox.isChecked) {
+        //不是必填
+        require = `style="visibility: hidden;"`;
+    }
+
     $html = $(`
                     <div class="text-input sui-form-viewType-0" data="rank">
                         <label>
-                            <span class="form-required">*</span>
                             <span class="form-autoNum">1. </span>
+                            <span class="form-required" ${require}>*</span>
                             <span class="title">${setting.input[0].text}</span>
                         </label>
                         <input type="text" value="${setting.input[1].text}" disabled>
                     </div>
                 `);
-    setting = defaultSetting($html);
+    setting = defaultSetting({data: data, dom: $html});
 
     return {
         $html: $html,
@@ -135,7 +165,7 @@ export function input(setting = defaultSetting()) {
             for (let key in setting) {
                 let cps = setting[key];
 
-                if(Array.isArray(cps)){
+                if (Array.isArray(cps)) {
                     cps.forEach((value) => {
                         value.setSetting();
                     })
@@ -152,7 +182,7 @@ export function input(setting = defaultSetting()) {
             for (let key in setting) {
                 let cps = setting[key];
 
-                if(Array.isArray(cps)){
+                if (Array.isArray(cps)) {
                     cps.forEach((value) => {
                         value.setDom(oldSetting);
                     })

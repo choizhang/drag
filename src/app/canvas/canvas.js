@@ -34,6 +34,8 @@ export class Canvas {
                 containner: '#editRight'
             }
         );
+
+
     }
 
     initCanvas() {
