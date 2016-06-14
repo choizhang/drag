@@ -13,7 +13,7 @@ developing...
 如果你感兴趣,下面的代码即可进入开发模式
 
 1. bower install
-2. npm install
+2. npm installg
 3. gulp serve
 
 如果需要放入生产环境(编译到dist目录)
@@ -31,3 +31,10 @@ text 文本  textarea 文本域  checkbox 复选 radio 单选 select 选人  dat
 <!--npm install-->
 
 <!--gulp serve-->
+
+
+License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2013-2016 Evan You
