@@ -31,3 +31,10 @@ text 文本  textarea 文本域  checkbox 复选 radio 单选 select 选人  dat
 <!--npm install-->
 
 <!--gulp serve-->
+
+
+License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2013-2016 Evan You

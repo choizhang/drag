@@ -14,7 +14,7 @@ export function date(data) {
     let setting = defaultSetting({data: data})
     let $html, require, other;
 
-    //对是否必填进行初始化操作
+    //对是否必填进行初始化操作1
     if (!setting.checkbox.isChecked) {
         //不是必填
         require = `style="visibility: hidden;"`;
