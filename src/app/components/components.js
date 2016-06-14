@@ -138,11 +138,13 @@ export class Components {
     microForm() {
         let that = this;
         let str = `
-            <div seeTitleStyle="color:red;" class="sui-form-ctrl sui-form-viewType-0 sui-form-title-font-size-12 sui-required" desc="这个是描述1">
-                <div v-sui-input2="s3scope.data.master['field0001'].value" v-bind:scope="{model:s3scope.data.master['field0001'], fieldInfo:s3scope.metadata.fieldInfo['field0001']}"></div>
-            </div><div seeTitleStyle="color:red;" class="sui-form-ctrl sui-form-viewType-0 sui-form-title-font-size-12 sui-required" desc="这个是描述2">
-                <div v-sui-input2="s3scope.data.master['field0002'].value" v-bind:scope="{model:s3scope.data.master['field0002'], fieldInfo:s3scope.metadata.fieldInfo['field0002']}"></div>
-            </div>
+            <div class="sui-form-ctrl sui-form-viewType-0 sui-form-title-font-size-12 sui-required" desc="这个是描述1">
+                <div sui-type="text" v-sui-input2="s3scope.data.master['field0001'].value" v-bind:scope="{model:s3scope.data.master['field0001'], fieldInfo:s3scope.metadata.fieldInfo['field0001']}"></div>
+            </div><div class="sui-form-ctrl sui-form-viewType-0 sui-form-title-font-size-12 sui-required" desc="这个是描述2">
+                <div sui-type="text" v-sui-input2="s3scope.data.master['field0002'].value" v-bind:scope="{model:s3scope.data.master['field0002'], fieldInfo:s3scope.metadata.fieldInfo['field0002']}"></div>
+            </div><div class="sui-form-ctrl sui-form-viewType-2">
+        <div sui-type="date" v-sui-date="s3scope.data.master['field0005'].value" v-bind:scope="{model:s3scope.data.master['field0005'], fieldInfo:s3scope.metadata.fieldInfo['field0005']}" desc="这个是考核结束时间的描述"></div>
+    </div>
         `;
 
         let allData = this.getTestData();
@@ -164,16 +166,29 @@ export class Components {
 
             //取出组件跟数据绑定的key,比如field0001
             let num = $(value).html().match(/field\d+/)[0];
+            let type = $(value).children().attr('sui-type');
+            let data = {};
             //从所有数据中取出之前表单生成的值,是可以修改的值
-            let data = {
-                label: allData.metadata.fieldInfo[num].display,
-                value: allData.data.master[num].value,
-                require: allData.data.master[num].notNull
+
+            //对从轻表单过来的控件进行分类处理
+            switch (type){
+                case 'text':
+                    data = {
+                        label: allData.metadata.fieldInfo[num].display,
+                        placeholder: allData.data.master[num].value,
+                        require: allData.data.master[num].notNull
+                    }
+                    break;
+                case 'date':
+                    data = {
+                        label: allData.metadata.fieldInfo[num].display,
+                        placeholder: allData.data.master[num].value,
+                        require: allData.data.master[num].notNull
+                    }
+                    break;
             }
 
-            //todo 我要知道组件的类型
-
-            let $component = that.factory('input', data);
+            let $component = that.factory(type, data);
 
             $component.append(value);
             $('#sortable').append($component);
@@ -248,6 +263,29 @@ export class Components {
                         "fieldType": "VARCHAR",
                         "digitNum": "0",
                         "fieldLength": "255"
+                    },
+                    "field0005": {
+                        "fieldName": "field0005",
+                        "inCalc": "false",
+                        "calc": {"back": "true"},
+                        "inCondition": "false",
+                        "enumId": "0",
+                        "value4Display": "3",
+                        "realInputType": "text",
+                        "auth": "browse",
+                        "enumParams": "0_false_0_",
+                        "display": "考核结束时间",
+                        "finalFieldType": "VARCHAR",
+                        "value4Db": "3",
+                        "value4Bussiness": "3",
+                        "name": "field0011",
+                        "ownerTableName": "formmain_0036",
+                        "inputType": "datetime",
+                        "enumLevel": "0",
+                        "formatType": "",
+                        "fieldType": "DATETIME ",
+                        "digitNum": "0",
+                        "fieldLength": "255"
                     }
                 }
             },
@@ -256,7 +294,8 @@ export class Components {
                 "master": {
                     "__state": "modify",
                     "field0001": {"value": "杨超1", "display": "杨超1", "auth": 'edit', notNull: true},
-                    "field0002": {"value": "杨超2", "display": "杨超2", "auth": 'edit'}
+                    "field0002": {"value": "杨超2", "display": "杨超2", "auth": 'edit'},
+                    "field0005": { "value": "", "display": "2016-06-11", "auth": 'edit' }
                 }
             }
         };

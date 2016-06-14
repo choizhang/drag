@@ -2,6 +2,8 @@
  * Created by choizhang on 16/6/1.
  */
 
+import * as util from '../../util/util';
+
 function defaultSetting(obj) {
     return {
         'input': [
@@ -22,8 +24,8 @@ function defaultSetting(obj) {
                 }
             },
             {
-                label: '默认值:',
-                text: obj.data && obj.data.value || '请输入姓名',
+                label: '提示语:',
+                text: obj.data && obj.data.placeholder || '请输入日期',
                 setDom: (setting) => {
                     let newValue;
                     if (typeof(setting) === 'object') {
@@ -31,10 +33,10 @@ function defaultSetting(obj) {
                     } else {
                         newValue = setting;
                     }
-                    obj.dom.find('input').val(newValue);
+                    obj.dom.find('input').attr('placeholder', newValue);
                 },
                 setSetting: function () {
-                    this.text = obj.dom.find('input').val();
+                    this.text = obj.dom.find('input').attr('placeholder');
                 }
             }
         ],
@@ -62,14 +64,21 @@ function defaultSetting(obj) {
         },
         'color': {
             label: '标题颜色',
-            value: '#000',
-            setDom: (newValue) => {
+            value: '',
+            setDom: (setting) => {
+                let newValue;
+                if (typeof(setting) === 'object') {
+                    newValue = setting.color.value;
+                } else {
+                    newValue = setting;
+                }
+
                 obj.dom.find('.title').css('color', newValue);
                 let tdom = obj.dom.next();
                 tdom.attr('seetitlestyle', `color: ${newValue}`);
             },
             setSetting: function () {
-                this.value = obj.dom.find('.title').css('color');
+                this.value = util.rgb2hex(obj.dom.find('.title').css('color'));
             }
         },
         'radio': {
@@ -135,7 +144,7 @@ function defaultSetting(obj) {
 }
 
 
-export function input(data) {
+export function date(data) {
 
     let setting = defaultSetting({data: data})
     let $html, require;
@@ -147,13 +156,13 @@ export function input(data) {
     }
 
     $html = $(`
-                    <div class="text-input sui-form-viewType-0" data="rank">
+                    <div class="text-input sui-form-viewType-0 see-icon see-icon-date" data="rank">
                         <label>
-                            <span class="form-autoNum">1. </span>
+                            <span class="form-autoNum"></span>
                             <span class="form-required" ${require}>*</span>
                             <span class="title">${setting.input[0].text}</span>
                         </label>
-                        <input type="text" value="${setting.input[1].text}" disabled>
+                        <input type="text" placeholder="${setting.input[1].text}" disabled>
                     </div>
                 `);
     setting = defaultSetting({data: data, dom: $html});

@@ -3,9 +3,14 @@
  */
 
 export function color(data) {
+    // 因为颜色最初的值没法固定,所以现场去取
+    if(!data.value){
+        data.setSetting();
+    }
+
     let $tplColor = $(`
         <div class="setting-component">
-            <label>${data.label}: <input type="color" id="bgColor" class="color" list="layerBackgroundColor_list"/></label>
+            <label>${data.label}: <input type="color" id="bgColor" value="${data.value}" class="color" list="layerBackgroundColor_list"/></label>
         </div>
     `);
 

@@ -5,7 +5,8 @@
 export { dividing } from './dividing/dividing';
 export { columnOne } from './column/columnOne';
 export { columnTwo } from './column/columnTwo';
-export { input } from './input/input';
+export { text } from './input/text';
+export { date } from './input/date';
 
 
 

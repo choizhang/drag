@@ -17,7 +17,7 @@ class InitSettings {
         const globalSetting = {
             'color': {
                 label: '背景颜色',
-                value: '#fff',
+                value: '#ffffff',
                 setDom: (newValue) => {
                     $('.design-ui').css('backgroundColor', newValue);
                 }

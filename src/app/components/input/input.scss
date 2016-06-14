@@ -1,23 +1,33 @@
 .text-input {
-    label {
-        display: block;
-        margin-right: 15px;
-        line-height: 50px;
-    }
+  position: relative;
 
-    input {
-        flex: 1;
-    }
-}
-
-.sui-form-viewType-0{
-    display: flex;
-}
-.sui-form-viewType-1{
+  label {
     display: block;
+    margin-right: 15px;
+    line-height: 50px;
+  }
+
+  input {
+    flex: 1;
+  }
 }
-.sui-form-viewType-2{
-    .title{
-        display: none;
-    }
+
+.sui-form-viewType-0 {
+  display: flex;
+}
+
+.sui-form-viewType-1 {
+  display: block;
+}
+
+.sui-form-viewType-2 {
+  .title {
+    display: none;
+  }
+}
+
+.see-icon-date:before {
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
