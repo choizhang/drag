@@ -144,6 +144,8 @@ export class Components {
                 <div sui-type="text" v-sui-input2="s3scope.data.master['field0002'].value" v-bind:scope="{model:s3scope.data.master['field0002'], fieldInfo:s3scope.metadata.fieldInfo['field0002']}"></div>
             </div><div class="sui-form-ctrl sui-form-viewType-2">
         <div sui-type="date" v-sui-date="s3scope.data.master['field0005'].value" v-bind:scope="{model:s3scope.data.master['field0005'], fieldInfo:s3scope.metadata.fieldInfo['field0005']}" desc="这个是考核结束时间的描述"></div>
+    </div><div class="sui-form-ctrl">
+        <div sui-type="textarea" v-sui-input2="s3scope.data.master['field0009'].value" v-bind:scope="{model:s3scope.data.master['field0009'], fieldInfo:s3scope.metadata.fieldInfo['field0009']}"></div>
     </div>
         `;
 
@@ -183,7 +185,16 @@ export class Components {
                     data = {
                         label: allData.metadata.fieldInfo[num].display,
                         placeholder: allData.data.master[num].value,
+                        value: allData.data.master[num].display,
                         require: allData.data.master[num].notNull
+                    }
+                    break;
+                case 'textarea':
+                    data = {
+                        //label: allData.metadata.fieldInfo[num].display,
+                        //placeholder: allData.data.master[num].value,
+                        //value: allData.data.master[num].display,
+                        //require: allData.data.master[num].notNull
                     }
                     break;
             }

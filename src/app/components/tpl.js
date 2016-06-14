@@ -7,6 +7,7 @@ export { columnOne } from './column/columnOne';
 export { columnTwo } from './column/columnTwo';
 export { text } from './input/text';
 export { date } from './input/date';
+export { textarea } from './input/textarea';
 
 
 
