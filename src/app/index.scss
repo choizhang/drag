@@ -185,7 +185,8 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    height: 100%;
+    overflow-y: scroll;
+    height: 950px;
     li {
         position: relative;
         padding: 30px 10px;

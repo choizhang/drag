@@ -2,34 +2,46 @@
  * Created by choizhang on 16/6/1.
  */
 
-function defaultSetting(dom) {
+import { baseExport, baseInputSetting } from '../base';
+import * as util from '../../util/util';
+
+function defaultSetting(obj) {
     return {
+        'input': {
+            label: '从表标题:',
+            text: obj.data && obj.data.label || '从表标题',
+            setDom: (setting, value={}) => {
+                let newValue = util.setDom(setting, value.text);
+                obj.dom.find('.subtable-title').eq(0).html(newValue);
+            },
+            setSetting: function () {
+                this.text = obj.dom.find('.subtable-title').html();
+            }
+        },
         'range': {
             label: '左右比例',
             value: '250',
             max: 350,
             min: 150,
-            setDom: (setting) => {
-                let newValue;
-                if(typeof(setting) === 'object'){
-                    newValue = setting.input.text;
-                } else {
-                    newValue = setting;
-                }
-                dom.find('.column-item').eq(0).css('width', newValue);
+            setDom: (setting, value={}) => {
+                let newValue = util.setDom(setting, value.text);
+                obj.dom.find('.column-item').eq(0).css('width', newValue);
             },
             setSetting: function() {
-                this.text = dom.find('span').html();
+                this.text = obj.dom.find('span').html();
             }
         }
     }
 }
 
 
-export function columnTwo(setting=defaultSetting()) {
-    let $html;
+export function columnTwo(data) {
+    let setting = defaultSetting({data: data})
+    let $html, other;
+
     $html = $(`
                     <div class="column">
+                        <h2 class="subtable-title">${setting.input.text}</h2>
                         <ul class="column-item">
                         </ul>
 
@@ -37,37 +49,8 @@ export function columnTwo(setting=defaultSetting()) {
                         </ul>
                     </div>
                 `);
-    setting = defaultSetting($html);
 
-    return {
-        $html: $html,
-        setting: setting,
-        save: () => {
-            for(let key in setting){
-                setting[key].setSetting();
-            }
+    setting = defaultSetting({data: data, dom: $html});
 
-            return setting;
-
-        },
-        reset: (oldSetting) => {
-
-            for(let key in setting){
-                setting[key].setDom(oldSetting);
-            }
-        },
-        injectJs: () => {
-            let js = `
-                    <script>
-                        $(function() {
-
-
-
-                        })
-
-                    </script>
-                    `;
-            return js
-        }
-    }
+    return baseExport($html, setting, other);
 }

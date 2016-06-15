@@ -26,8 +26,6 @@ text 文本  textarea 文本域  checkbox 复选 radio 单选 select 选人  dat
 在html中用sui-type="text"来做区别
 
 
-
-
 <!--bower install-->
 
 <!--npm install-->
