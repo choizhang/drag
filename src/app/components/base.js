@@ -4,7 +4,7 @@
 
 import * as util from '../util/util';
 
-export function baseExport($html, setting, other={}) {
+export function baseExport($html, setting, other = {}) {
     const base = {
         $html: $html,
         setting: setting,
@@ -31,10 +31,10 @@ export function baseExport($html, setting, other={}) {
 
                 if (Array.isArray(cps)) {
                     cps.forEach((value) => {
-                        value.setDom(oldSetting);
+                        value.setDom(oldSetting, value);
                     })
                 } else {
-                    cps.setDom(oldSetting);
+                    cps.setDom(oldSetting, cps);
                 }
             }
         }
@@ -43,19 +43,14 @@ export function baseExport($html, setting, other={}) {
     return Object.assign({}, base, other);
 }
 
-export function baseInputSetting(obj, title, placeholder) {
+export function baseInputSetting(obj) {
     const base = {
         'input': [
             {
                 label: '标题:',
-                text: obj.data && obj.data.label || title,
-                setDom: (setting) => {
-                    let newValue;
-                    if (typeof(setting) === 'object') {
-                        newValue = setting.input[0].text;
-                    } else {
-                        newValue = setting;
-                    }
+                text: obj.data && obj.data.label || '标题',
+                setDom: (setting, value={}) => {
+                    let newValue = util.setDom(setting, value.text);
                     obj.dom.find('.title').html(newValue);
                 },
                 setSetting: function () {
@@ -64,18 +59,29 @@ export function baseInputSetting(obj, title, placeholder) {
             },
             {
                 label: '提示语:',
-                text: obj.data && obj.data.placeholder || placeholder,
-                setDom: (setting) => {
-                    let newValue;
-                    if (typeof(setting) === 'object') {
-                        newValue = setting.input[1].text;
-                    } else {
-                        newValue = setting;
-                    }
+                text: obj.data && obj.data.placeholder || '请输入',
+                //setDom: (setting, value) => {
+                //    let newValue;
+                //    if (typeof(setting) === 'object') {
+                //        newValue = setting.input[1].text;
+                //
+                //    } else {
+                //        newValue = setting;
+                //    }
+                //    obj.dom.find('input').attr('placeholder', newValue);
+                //},
+                //上面这种写法太臃肿而且也是hard code,不好公用
+                setDom: (setting, value={}) => {
+                    let newValue = util.setDom(setting, value.text);
                     obj.dom.find('input').attr('placeholder', newValue);
                 },
+                //这里还不能使用es6的写法,因为是jquery封装的
                 setSetting: function () {
-                    this.text = obj.dom.find('input').attr('placeholder');
+                    let placeholder = obj.dom.find('input').attr('placeholder');
+                    //有textarea的情况,所以如果没有placeholder就不设置了
+                    if (placeholder) {
+                        this.text = placeholder;
+                    }
                 }
             }
         ],
@@ -83,35 +89,24 @@ export function baseInputSetting(obj, title, placeholder) {
             label: '校验:',
             text: '此项必填',
             isChecked: obj.data && obj.data.require || false,
-            setDom: (setting) => {
-                let newValue;
-                if (typeof(setting) === 'object') {
-                    newValue = setting.checkbox.isChecked;
-                } else {
-                    newValue = setting;
-                }
+            setDom: (setting, value={}) => {
+                let newValue = util.setDom(setting, value.isChecked);
                 if (newValue) {
                     obj.dom.find('.form-required').css({'visibility': 'visible'});
                 } else {
                     obj.dom.find('.form-required').css({'visibility': 'hidden'});
                 }
-
             },
             setSetting: function () {
-                this.isChecked = obj.dom.find('.form-required').is(":visible");
+                //is(:visible)对visibility是无效的
+                this.isChecked = obj.dom.find('.form-required').css('visibility') === 'visible' ? true : false;
             }
         },
         'color': {
             label: '标题颜色',
             value: '',
-            setDom: (setting) => {
-                let newValue;
-                if (typeof(setting) === 'object') {
-                    newValue = setting.color.value;;
-                } else {
-                    newValue = setting;
-                }
-
+            setDom: (setting, value={}) => {
+                let newValue = util.setDom(setting, value.value);
                 obj.dom.find('.title').css('color', newValue);
                 let tdom = obj.dom.next();
                 tdom.attr('seetitlestyle', `color: ${newValue}`);
@@ -140,14 +135,9 @@ export function baseInputSetting(obj, title, placeholder) {
                 name: 'layout',
                 checkedValue: 1
             },
-            setDom: (setting) => {
-                let newValue;
-                if (typeof(setting) === 'object') {
-                    newValue = setting.radio.options.checkedValue;
-                } else {
-                    newValue = setting;
-                }
-
+            setDom: (setting, value={}) => {
+                let setValue = value.options ? value.options.checkedValue : undefined;
+                let newValue = util.setDom(setting, setValue);
                 let classStr = obj.dom.attr('class');
 
                 classStr = classStr.replace(/Type-\d/, 'Type-' + (newValue - 1));
@@ -162,7 +152,6 @@ export function baseInputSetting(obj, title, placeholder) {
                 classStr = classStr.replace(/Type-\d/, 'Type-' + (newValue - 1));
 
                 tdom.attr('class', classStr);
-
             },
             setSetting: function () {
                 let checkedValue;
@@ -181,5 +170,5 @@ export function baseInputSetting(obj, title, placeholder) {
         }
     }
 
-    return base;
+    return Object.assign({}, base, obj.other);
 }

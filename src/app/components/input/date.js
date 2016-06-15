@@ -5,7 +5,7 @@
 import { baseExport, baseInputSetting } from '../base';
 
 function defaultSetting(obj) {
-    return baseInputSetting(obj, '日期', '请输入日期');
+    return baseInputSetting(obj);
 }
 
 

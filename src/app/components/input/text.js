@@ -4,7 +4,7 @@
 import { baseExport, baseInputSetting } from '../base';
 
 function defaultSetting(obj) {
-    return baseInputSetting(obj, '姓名', '请输入姓名');
+    return baseInputSetting(obj);
 }
 
 
@@ -38,7 +38,7 @@ export function text(data) {
                     <script>
                         $(function() {
 
-
+                            console.log('我来自text组件的js执行')
 
                         })
 

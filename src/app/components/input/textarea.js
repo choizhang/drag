@@ -5,7 +5,28 @@
 import { baseExport, baseInputSetting } from '../base';
 
 function defaultSetting(obj) {
-    return baseInputSetting(obj, '文本', '');
+    obj.other = {
+        'range': {
+            label: '框高度',
+            value: 50,
+            max: 100,
+            min: 50,
+            setDom: (setting) => {
+                let newValue;
+                if (typeof(setting) === 'object') {
+                    newValue = setting.range.value;
+                } else {
+                    newValue = setting;
+                }
+
+                obj.dom.find('textarea').css('height', newValue);
+            },
+            setSetting: () => {
+                this.value = obj.dom.find('textarea').css('height');
+            }
+        }
+    };
+    return baseInputSetting(obj);
 }
 
 
@@ -21,7 +42,7 @@ export function textarea(data) {
     }
 
     $html = $(`
-                    <div class="text-input sui-form-viewType-0" data="rank">
+                    <div class="text-textarea sui-form-viewType-0" data="rank">
                         <label>
                             <span class="form-autoNum"></span>
                             <span class="form-required" ${require}>*</span>
