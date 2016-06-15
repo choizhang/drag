@@ -3,6 +3,7 @@
  */
 import * as common from '../common/common';
 import * as tpl from './tpl';
+import { initSettings } from '../common/initSettings';
 
 
 export class Components {
@@ -163,6 +164,9 @@ export class Components {
         //    $('#sortable').append($component);
         //})
 
+        // 根据返回的数据去初始化全局的设置
+        initSettings.initGlobal(allData.metadata.description, 'bb');
+
 
         $(str).each(function (index, value) {
 
@@ -190,12 +194,7 @@ export class Components {
                     }
                     break;
                 case 'textarea':
-                    data = {
-                        //label: allData.metadata.fieldInfo[num].display,
-                        //placeholder: allData.data.master[num].value,
-                        //value: allData.data.master[num].display,
-                        //require: allData.data.master[num].notNull
-                    }
+                    data = {}
                     break;
             }
 

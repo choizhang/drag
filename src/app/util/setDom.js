@@ -1,5 +1,5 @@
 /**
- * Created by choizhang on 16/6/1.
+ * Created by choizhang on 16/6/15.
  */
 
 export function setDom(setting, value) {

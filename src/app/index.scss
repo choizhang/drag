@@ -113,6 +113,16 @@ ul {
     //transform: scale(0.7);
     transform-origin: 50% 0;
 
+    .header-title{
+        height: 50px;
+        padding: 20px 0;
+        text-align: center;
+
+        h1{
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+    }
     .line960 {
         border: 1px solid #F00;
         border-right: none;
@@ -180,6 +190,7 @@ ul {
         overflow: hidden;
         position: relative;
         padding: 30px 10px;
+        margin-bottom: 1px;
 
         .del {
             display: none;
@@ -194,6 +205,7 @@ ul {
         }
 
         &:hover {
+            z-index: 2;
             outline: 1px #000d00 dashed;
 
             .del {
@@ -202,11 +214,10 @@ ul {
         }
 
         &.active {
+            z-index: 1;
             outline: 1px #ff0d00 solid;
         }
     }
-
-
 
     .form-autoNum {
         display: none;

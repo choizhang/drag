@@ -6,7 +6,7 @@ export function range(data) {
     let $range = $(`
         <div class="setting-component">
             <div>${data.label}</div>
-            <input type="range" max="${data.max}" min="${data.min}" value="${data.value}">
+            <input type="range" max="${data.max}" min="${data.min}" value="${data.value}" step="${data.step || 1}">
         </div>
     `);
 

@@ -31,7 +31,6 @@ export function text(data) {
                 `);
     setting = defaultSetting({data: data, dom: $html});
 
-
     let other = {
         injectJs: () => {
             let js = `

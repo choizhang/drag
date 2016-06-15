@@ -13,8 +13,31 @@ class InitSettings {
         this.$settringArea = $('.setting-area');
         this.$globalSetting = $('#global-setting-area');
 
+    }
 
-        const globalSetting = {
+    init(setting={}) {
+        this.clear();
+        this.generator(setting, this.$settringArea);
+    }
+
+    globalSetting(title, subTitle) {
+        return {
+            'input': [
+                {
+                    label: '标题:',
+                    text: title,
+                    setDom: (newValue) => {
+                        $('#headerTitle').find('h1').html(newValue);
+                    }
+                },
+                {
+                    label: '副标题:',
+                    text: subTitle,
+                    setDom: (newValue) => {
+                        $('#headerTitle').find('h2').html(newValue);
+                    }
+                }
+            ],
             'color': {
                 label: '背景颜色',
                 value: '#ffffff',
@@ -23,6 +46,16 @@ class InitSettings {
                 }
             },
             'range': [
+                {
+                    label: '页面缩放比例',
+                    value: 1,
+                    max: 1,
+                    min: 0.7,
+                    step: 0.1,
+                    setDom: (newValue) => {
+                        $('.design-ui').css('transform', `scale(${newValue})`);
+                    }
+                },
                 {
                     label: '左右间距',
                     value: 10,
@@ -65,15 +98,12 @@ class InitSettings {
                 }
             ]
         }
-        this.initGlobal(globalSetting);
     }
 
-    init(setting={}) {
-        this.clear();
-        this.generator(setting, this.$settringArea);
-    }
-
-    initGlobal(setting) {
+    initGlobal(title, subTitle) {
+        let setting = this.globalSetting(title, subTitle);
+        setting.input[0].setDom(setting.input[0].text);
+        setting.input[1].setDom(setting.input[1].text);
         this.generator(setting, this.$globalSetting);
     }
 
@@ -92,7 +122,6 @@ class InitSettings {
                 dom = tpl[key](cps);
             }
 
-
             //生成了一个组件就塞到设置面板里面,并且这个生成的组件是绑定了事件的
             target.append(dom);
         }
@@ -103,6 +132,7 @@ class InitSettings {
     }
 
 }
+
 let initSettings = new InitSettings()
 
 export { initSettings };

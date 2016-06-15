@@ -107,6 +107,9 @@ export class Canvas {
                     //placeholder: 'block-placeholder',
                     update: function (event, ui) {
 
+                        //插件添加了hover的样式,我这清空了
+                        ui.item.removeAttr('style');
+
                         common.sortNumber.sort();
 
                     },

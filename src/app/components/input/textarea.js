@@ -3,6 +3,7 @@
  */
 
 import { baseExport, baseInputSetting } from '../base';
+import * as util from '../../util/util';
 
 function defaultSetting(obj) {
     obj.other = {
@@ -11,14 +12,8 @@ function defaultSetting(obj) {
             value: 50,
             max: 100,
             min: 50,
-            setDom: (setting) => {
-                let newValue;
-                if (typeof(setting) === 'object') {
-                    newValue = setting.range.value;
-                } else {
-                    newValue = setting;
-                }
-
+            setDom: (setting, value={}) => {
+                let newValue = util.setDom(setting, value.value);
                 obj.dom.find('textarea').css('height', newValue);
             },
             setSetting: () => {
