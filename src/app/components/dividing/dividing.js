@@ -2,7 +2,7 @@
  * Created by choizhang on 16/6/1.
  */
 
-function defaultSetting(dom) {
+function defaultSetting(obj) {
     return {
         'select': {
             label: '水平位置',
@@ -42,10 +42,10 @@ function defaultSetting(dom) {
                         newValue = 'right';
                         break;
                 }
-                dom.css('text-align', newValue);
+                obj.dom.css('text-align', newValue);
             },
             setSetting: function() {
-                let align = dom.css('text-align');
+                let align = obj.dom.css('text-align');
                 switch (align) {
                     case 'left':
                         align = 1;
@@ -70,10 +70,10 @@ function defaultSetting(dom) {
                 } else {
                     newValue = setting;
                 }
-                dom.find('span').html(newValue);
+                obj.dom.find('span').html(newValue);
             },
             setSetting: function() {
-                this.text = dom.find('span').html();
+                this.text = obj.dom.find('span').html();
             }
         }
     }
@@ -81,7 +81,7 @@ function defaultSetting(dom) {
 
 
 
-export function dividing(setting=defaultSetting()) {
+export function dividing(data) {
 
     //目前根本没有传参数的情况
     //let $html;
@@ -104,28 +104,17 @@ export function dividing(setting=defaultSetting()) {
     //    setting = defaultSetting($html);
     //}
 
-    let $html;
+    let setting = defaultSetting({data: data})
+    let $html, other;
+
     $html = $(`
                     <div class="dividing">
                         <hr>
                         <span>${setting.input.text}</span>
                     </div>
                 `);
-    setting = defaultSetting($html);
 
-    return {
-        $html: $html,
-        setting: setting,
-        save: () => {
-            for(let key in setting){
-                setting[key].setSetting();
-            }
-            return setting;
-        },
-        reset: (oldSetting) => {
-            for(let key in setting){
-                setting[key].setDom(oldSetting);
-            }
-        }
-    }
+    setting = defaultSetting({data: data, dom: $html});
+
+    return baseExport($html, setting, other);
 }

@@ -11,7 +11,7 @@ function defaultSetting(obj) {
 export function text(data) {
 
     let setting = defaultSetting({data: data})
-    let $html, require;
+    let $html, require, other;
 
     //对是否必填进行初始化操作
     if (!setting.checkbox.isChecked) {
@@ -29,9 +29,10 @@ export function text(data) {
                         <input type="text" placeholder="${setting.input[1].text}" disabled>
                     </div>
                 `);
+
     setting = defaultSetting({data: data, dom: $html});
 
-    let other = {
+    other = {
         injectJs: () => {
             let js = `
                     <script>

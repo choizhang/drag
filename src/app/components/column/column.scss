@@ -1,13 +1,25 @@
 .column {
     display: flex;
+    position: relative;
+    border: 1px dashed;
+
+    h2{
+        position: absolute;
+        left: 8px;
+        top: -7px;
+        z-index: 3;
+        padding: 0 10px;
+        background-color: #fff;
+    }
     .column-item {
         min-height: 70px;
 
-        &:nth-child(1) {
+        &:nth-child(2) {
             width: 250px;
         }
-        &:nth-child(2) {
+        &:nth-child(3) {
             flex: 1;
+            padding: 15px 0;
         }
     }
     .column-item-one {

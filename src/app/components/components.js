@@ -113,12 +113,11 @@ export class Components {
 
                     let type = ui.draggable.data('component');
 
-                    let $component = that.factory(type);
+                    if(type){
+                        let $component = that.factory(type);
 
-                    $component.appendTo(this);
-
-                    //common.sortNumber.sort();
-
+                        $component.appendTo(this);
+                    }
                 }
             })
             .sortable({
@@ -194,6 +193,10 @@ export class Components {
                     }
                     break;
                 case 'textarea':
+                    data = {}
+                    break;
+                case 'subTable':
+                    //从表
                     data = {}
                     break;
             }

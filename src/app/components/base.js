@@ -145,13 +145,16 @@ export function baseInputSetting(obj) {
                 obj.dom.attr('class', classStr);
 
                 //将旁边的原始模板也做同样的修改
-                let tdom = obj.dom.next()
+                let tdom = obj.dom.next();
 
-                classStr = tdom.attr('class');
+                if(tdom){
+                    //如果是拖动进来的就不会有兄弟节点
+                    classStr = tdom.attr('class');
 
-                classStr = classStr.replace(/Type-\d/, 'Type-' + (newValue - 1));
+                    classStr = classStr.replace(/Type-\d/, 'Type-' + (newValue - 1));
 
-                tdom.attr('class', classStr);
+                    tdom.attr('class', classStr);
+                }
             },
             setSetting: function () {
                 let checkedValue;

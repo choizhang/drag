@@ -187,7 +187,6 @@ ul {
     padding: 0;
     height: 100%;
     li {
-        overflow: hidden;
         position: relative;
         padding: 30px 10px;
         margin-bottom: 1px;
@@ -197,6 +196,7 @@ ul {
             position: absolute;
             right: 10px;
             top: 5px;
+            z-index: 2;
             font-size: 26px;
         }
 
