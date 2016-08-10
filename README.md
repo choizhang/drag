@@ -4,10 +4,10 @@
 
 developing...
 
-[github preview上有bug,还是需要直接下载dist目录查看](https://htmlpreview.github.io/?https://github.com/choizhang/drag/blob/master/dist/index.html)
+~~[github preview上有bug,还是需要直接下载dist目录查看](https://htmlpreview.github.io/?https://github.com/choizhang/drag/blob/master/dist/index.html)~~
 
-[GitZip](http://kinolien.github.io/gitzip/)
-输入"https://github.com/choizhang/drag/tree/master/dist"进行下载
+~~[GitZip](http://kinolien.github.io/gitzip/)
+输入"https://github.com/choizhang/drag/tree/master/dist"进行下载~~
 
 我放到了[github pages](https://choizhang.github.io/)上面
 
