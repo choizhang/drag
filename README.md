@@ -9,6 +9,8 @@ developing...
 [GitZip](http://kinolien.github.io/gitzip/)
 输入"https://github.com/choizhang/drag/tree/master/dist"进行下载
 
+我放到了[github pages](https://choizhang.github.io/)上面
+
 
 如果你感兴趣,下面的代码即可进入开发模式
 
